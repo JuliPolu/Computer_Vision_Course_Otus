@@ -1,0 +1,6 @@
+metric,value,step
+hp_metric,-1.0,0.0
+test_f1,0.9770082235336304,2370.0
+test_precision,0.9822222590446472,2370.0
+test_recall,0.9766666889190674,2370.0
+epoch,30.0,2370.0

@@ -1,0 +1,39 @@
+project_name: 'ButterflyClassifier'
+experiment_name: 'resnet18_COMB_aug'
+num_classes: 30
+n_epochs: 30
+accelerator: 'gpu'
+device: 0
+monitor_metric: 'val_f1'
+monitor_mode: 'max'
+threshold: 0.5
+metrics_average: 'macro'
+
+model_kwargs:
+  model_name: 'resnet18.a1_in1k'
+  pretrained: true
+
+optimizer: 'torch.optim.AdamW'
+optimizer_kwargs:
+  lr: 1e-3
+  weight_decay: 1e-5
+
+scheduler: 'torch.optim.lr_scheduler.ReduceLROnPlateau'
+scheduler_kwargs:
+  mode: 'min'
+  factor: 0.3
+  patience: 10
+  min_lr: 1e-5
+
+losses:
+  - name: 'CE'
+    weight: 1.0
+    loss_fn: 'torch.nn.CrossEntropyLoss'
+
+data_config:
+  data_path: './data_sports'
+  batch_size: 8
+  n_workers: 4
+  train_size: 0.7
+  width: 224
+  height: 224
